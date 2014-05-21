@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="WRAP_"
+    android:layout_height="match_parent" >
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignWithParentIfMissing="true"
+        android:id="@+id/image_card"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignBaseline="@+id/image_card"
+        android:id="@+id/text_card"
+        android:background="@color/black_trans"
+        />
+    
+
+</RelativeLayout>
