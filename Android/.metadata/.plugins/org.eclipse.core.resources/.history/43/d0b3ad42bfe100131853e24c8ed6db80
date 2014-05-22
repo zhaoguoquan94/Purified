@@ -1,8 +1,5 @@
 package com.dagger_studio.purified;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -33,8 +30,4 @@ public class Main_Tab2_Fragment extends Fragment{
 		return inflater.inflate(R.layout.activity_main_tab2, container, false);
 	}
 
-	private View view;
-	private ListView listView = null;
-	private Card_wide_Adapter adapter;
-	private List<String> idOfCard_list = new ArrayList<String>();
 }
