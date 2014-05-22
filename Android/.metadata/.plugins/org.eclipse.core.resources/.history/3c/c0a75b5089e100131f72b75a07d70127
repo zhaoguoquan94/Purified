@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black_trans">#FF000000</color>
+    <color name="grey_back">#BDC3C7</color>
+    <color name="white">#FFFFFF</color>
+    
+</resources>

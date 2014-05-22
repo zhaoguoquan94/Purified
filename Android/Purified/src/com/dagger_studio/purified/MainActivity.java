@@ -19,6 +19,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println("hwlstart!");
         fragmentManager = this.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_layout, tab1_Fragment).commit();
         
@@ -64,7 +65,7 @@ public class MainActivity extends FragmentActivity {
 			}
 			@Override
 			public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-				fragmentManager.beginTransaction().replace(R.id.main_layout, tab3_Fragment);
+				fragmentManager.beginTransaction().replace(R.id.main_layout, tab3_Fragment).commit();
 			}
 			@Override
 			public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
