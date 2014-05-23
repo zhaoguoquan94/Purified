@@ -1,7 +1,0 @@
-package com.dagger_studio.purified;
-
-import android.widget.BaseAdapter;
-
-public class MyAdapter extends BaseAdapter {
-
-}

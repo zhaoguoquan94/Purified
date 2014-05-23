@@ -10,6 +10,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 
 
@@ -19,7 +22,6 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("hwlstart!");
         fragmentManager = this.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_layout, tab1_Fragment).commit();
         
@@ -38,9 +40,9 @@ public class MainActivity extends FragmentActivity {
 			@Override
 			public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
 			}
-		});
-        
+		});        
         actionBar.addTab(tab1);
+        
         Tab tab2 = actionBar.newTab();
         tab2.setText("∫√”—±„Ã˘");
         tab2.setTabListener(new TabListener() {
@@ -72,6 +74,7 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
         actionBar.addTab(tab3);
+        
     }
 
 
@@ -82,10 +85,28 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
     
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+    	switch (item.getItemId()) {
+		case R.id.action_new:
+			makeShortToast("add!");
+			break;
+
+		default:
+			break;
+		}
+    	return super.onOptionsItemSelected(item);
+    }
+    
     private Main_Tab1_Fragment tab1_Fragment = new Main_Tab1_Fragment();
     private Main_Tab2_Fragment tab2_Fragment = new Main_Tab2_Fragment();
     private Main_Tab3_Fragment tab3_Fragment = new Main_Tab3_Fragment();
     private FragmentManager fragmentManager = null;
     private int currentFragment;
+    
+    private void makeShortToast(String str)
+	{
+		Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+	}
 }
 

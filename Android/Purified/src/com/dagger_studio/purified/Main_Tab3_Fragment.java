@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class Main_Tab3_Fragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
 	{
-		view = inflater.inflate(R.layout.activity_main__tab3, container, false);
+		view = inflater.inflate(R.layout.activity_main_tab3, container, false);
 		listView = (ListView)view.findViewById(R.id.listView_recommand);
 		for (int i=1;i<5;i++)
 		{
@@ -41,7 +41,6 @@ public class Main_Tab3_Fragment extends Fragment{
 		System.out.println("Create!");
 	}
 	
-	
 	private void makeShortToast(String str)
 	{
 		Toast.makeText(null, str, Toast.LENGTH_SHORT).show();
@@ -51,8 +50,6 @@ public class Main_Tab3_Fragment extends Fragment{
 	private ListView listView = null;
 	private Card_wide_Adapter adapter;
 	private List<String> idOfCard_list = new ArrayList<String>();
-	
-
 }
 
 
