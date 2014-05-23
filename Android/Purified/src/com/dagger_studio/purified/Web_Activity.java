@@ -3,9 +3,11 @@ package com.dagger_studio.purified;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -14,14 +16,6 @@ public class Web_Activity extends Activity {
 	@SuppressLint("NewApi") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_web);
-//		Bundle bundle = getIntent().getExtras();
-//		ActionBar actionBar = getActionBar();
-//      actionBar.setDisplayHomeAsUpEnabled(true);
-//        
-//        webView = (WebView)findViewById(R.id.webView);
-//        webView.loadUrl(bundle.getString("url"));
-//        webView.getSettings().setJavaScriptEnabled(true);
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -35,8 +29,9 @@ public class Web_Activity extends Activity {
 		
         
 	}
-
-	public boolean onKeyDown(int keyCode, KeyEvent event)
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)//TODO
 	{
 		if (keyCode == KeyEvent.KEYCODE_BACK )
 		{
@@ -54,9 +49,23 @@ public class Web_Activity extends Activity {
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.web, menu);
+		getMenuInflater().inflate(R.menu.web, menu);//TODO
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)//TODO
+	{
+		switch (item.getItemId()) {
+		case android.R.id.home:	
+			Intent intent = new Intent(this, MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	
 	private WebView webView = null;

@@ -19,9 +19,13 @@ public class Main_Tab3_Fragment extends Fragment{
 	{
 		view = inflater.inflate(R.layout.activity_main_tab3, container, false);
 		listView = (ListView)view.findViewById(R.id.listView_recommand);
-		for (int i=1;i<5;i++)
+		if (idOfCard_list==null)
 		{
-			idOfCard_list.add("user"+i);
+			 idOfCard_list = new ArrayList<String>();
+			 for (int i=0;i<5;i++)
+				{
+					idOfCard_list.add("user"+i);
+				}
 		}
 		adapter = new Card_wide_Adapter(getActivity().getApplicationContext(), idOfCard_list);
 		listView.setAdapter(adapter);
@@ -49,7 +53,7 @@ public class Main_Tab3_Fragment extends Fragment{
 	private View view;
 	private ListView listView = null;
 	private Card_wide_Adapter adapter;
-	private List<String> idOfCard_list = new ArrayList<String>();
+	private List<String> idOfCard_list = null;
 }
 
 

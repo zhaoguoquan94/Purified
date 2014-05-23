@@ -1,6 +1,5 @@
 package com.dagger_studio.purified;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -8,10 +7,10 @@ import android.app.ActionBar.TabListener;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.VelocityTracker;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -23,7 +22,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = this.getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_layout, tab1_Fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.main_content, tab1_Fragment).commit();
         
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -35,7 +34,7 @@ public class MainActivity extends FragmentActivity {
 			}
 			@Override
 			public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-				fragmentManager.beginTransaction().replace(R.id.main_layout, tab1_Fragment).commit();
+				fragmentManager.beginTransaction().replace(R.id.main_content, tab1_Fragment).commit();
 			}
 			@Override
 			public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
@@ -51,7 +50,7 @@ public class MainActivity extends FragmentActivity {
 			}
 			@Override
 			public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-				fragmentManager.beginTransaction().replace(R.id.main_layout, tab2_Fragment).commit();
+				fragmentManager.beginTransaction().replace(R.id.main_content, tab2_Fragment).commit();
 			}
 			@Override
 			public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
@@ -67,7 +66,7 @@ public class MainActivity extends FragmentActivity {
 			}
 			@Override
 			public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-				fragmentManager.beginTransaction().replace(R.id.main_layout, tab3_Fragment).commit();
+				fragmentManager.beginTransaction().replace(R.id.main_content, tab3_Fragment).commit();
 			}
 			@Override
 			public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
@@ -91,18 +90,27 @@ public class MainActivity extends FragmentActivity {
 		case R.id.action_new:
 			makeShortToast("add!");
 			break;
-
 		default:
 			break;
 		}
     	return super.onOptionsItemSelected(item);
     }
     
+    public static final int SNAP_VELOCITY = 200;
+    
     private Main_Tab1_Fragment tab1_Fragment = new Main_Tab1_Fragment();
     private Main_Tab2_Fragment tab2_Fragment = new Main_Tab2_Fragment();
     private Main_Tab3_Fragment tab3_Fragment = new Main_Tab3_Fragment();
     private FragmentManager fragmentManager = null;
-    private int currentFragment;
+    private int screenWidth;
+    private int leftEdge;
+    private int rightEdge=0;
+    private int menuPadding=80;//全部划出时，content露出来的部分
+    private LinearLayout.LayoutParams menuParams;
+    private float xDown, xMove,xUp;
+    private boolean isMenuVisible;
+    private VelocityTracker mVelocityTracker;
+    
     
     private void makeShortToast(String str)
 	{

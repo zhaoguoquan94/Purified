@@ -21,10 +21,15 @@ public class Main_Tab1_Fragment extends Fragment{
 		activity = this.getActivity();
 		view = inflater.inflate(R.layout.activity_main_tab1, container, false);
 		listView = (ListView)view.findViewById(R.id.listView_mine);
-		for (int i=0;i<5;i++)
+		if (idOfCard_list==null)
 		{
-			idOfCard_list.add(urls[i]);
+			 idOfCard_list = new ArrayList<String>();
+			 for (int i=0;i<5;i++)
+				{
+					idOfCard_list.add(urls[i]);
+				}
 		}
+		
 		adapter = new Card_wide_Adapter(getActivity().getApplicationContext(), idOfCard_list);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -50,7 +55,7 @@ public class Main_Tab1_Fragment extends Fragment{
 	private Activity activity;
 	private ListView listView = null;
 	private Card_wide_Adapter adapter;
-	private List<String> idOfCard_list = new ArrayList<String>();
+	private List<String> idOfCard_list=null;
 	private String[] urls={"http://www.news.163.com","http://zhihu.com","http://today.hit.edu.cn","http://news.163.com/14/0522/13/9SRPNPSG0001124J.html","http://news.163.com/14/0522/18/9SSBI50R00014JB6.html"};//TODO
 	
 }
