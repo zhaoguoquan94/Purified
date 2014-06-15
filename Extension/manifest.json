@@ -8,6 +8,9 @@
         "48": "images/icon48.png",
         "128": "images/icon128.png"
     },
+    "permissions":[
+        "contextMenus"
+    ],
     "browser_action": {
         "default_icon": {
             "19": "images/icon19.png",
@@ -15,5 +18,10 @@
         },
         "default_title": "Purified",
         "default_popup": "index.html"
+    },
+    "background": {
+        "scripts": [
+            "js/main.js"
+        ]
     }
 }
