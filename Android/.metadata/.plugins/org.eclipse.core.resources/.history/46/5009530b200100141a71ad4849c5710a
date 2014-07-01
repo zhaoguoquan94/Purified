@@ -47,7 +47,7 @@ public class MainActivity extends FragmentActivity {
 		            // 手指按下时，记录按下时的横坐标  
 		            xDown = event.getRawX();
 		            System.out.println("push!");
-		            break;
+		            break;  
 		        case MotionEvent.ACTION_MOVE:  
 		            // 手指移动时，对比按下时的横坐标，计算出移动的距离，来调整menu的leftMargin值，从而显示和隐藏menu  
 		            xMove = event.getRawX();  
@@ -217,7 +217,7 @@ public class MainActivity extends FragmentActivity {
         content = findViewById(R.id.main_content);
         menu = findViewById(R.id.main_menu);
         menuParams = (LinearLayout.LayoutParams) menu.getLayoutParams();  
-        // 将menu的宽度设置为屏幕宽度减去menuPadding
+        // 将menu的宽度设置为屏幕宽度减去menuPadding  
         menuParams.width = screenWidth - menuPadding;
         // 左边缘的值赋值为menu宽度的负数  
         leftEdge = -menuParams.width;  

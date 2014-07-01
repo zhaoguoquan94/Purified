@@ -47,7 +47,7 @@ public class MainActivity extends FragmentActivity {
 		            // 手指按下时，记录按下时的横坐标  
 		            xDown = event.getRawX();
 		            System.out.println("push!");
-		            break;
+		            break;  
 		        case MotionEvent.ACTION_MOVE:  
 		            // 手指移动时，对比按下时的横坐标，计算出移动的距离，来调整menu的leftMargin值，从而显示和隐藏menu  
 		            xMove = event.getRawX();  
@@ -210,14 +210,14 @@ public class MainActivity extends FragmentActivity {
 	}
     
     @SuppressLint("NewApi")
-    public void initValues() {  
+	private void initValues() {  
         WindowManager window = (WindowManager) getSystemService(Context.WINDOW_SERVICE);  
         screenWidth = window.getDefaultDisplay().getWidth(); 
         layout = findViewById(R.id.main_layout);
         content = findViewById(R.id.main_content);
         menu = findViewById(R.id.main_menu);
         menuParams = (LinearLayout.LayoutParams) menu.getLayoutParams();  
-        // 将menu的宽度设置为屏幕宽度减去menuPadding
+        // 将menu的宽度设置为屏幕宽度减去menuPadding  
         menuParams.width = screenWidth - menuPadding;
         // 左边缘的值赋值为menu宽度的负数  
         leftEdge = -menuParams.width;  
@@ -229,24 +229,24 @@ public class MainActivity extends FragmentActivity {
         actionBar = getActionBar();
         
     }
-    public boolean wantToShowContent(){
+    private boolean wantToShowContent(){
     	/**
     	 * 判定是否是想要向主页面滚动，当向左滑（xUp<xDown)且当前是显示drawer的时候
     	 */
 		return xUp - xDown<0 && isMenuVisible;
 	}
-    public boolean wantToShowMenu(){
+	private boolean wantToShowMenu(){
 		/**
     	 * 判定是否是想要向drawer滚动，当向左滑（xUp<xDown)且当前是显示主界面的时候
     	 */
 		return xUp-xDown>0&&!isMenuVisible;
 	}
 	
-	public boolean shouldScrollToMenu() {
+	private boolean shouldScrollToMenu() {
 		return xUp - xDown > screenWidth / 2 || getScrollVelocity() > SNAP_VELOCITY;
 	}
 	
-	public boolean shouldScrollToContent() {  
+	private boolean shouldScrollToContent() {  
         return (xDown - xUp + menuPadding) > screenWidth / 2 || getScrollVelocity() > SNAP_VELOCITY;  
     }
 	

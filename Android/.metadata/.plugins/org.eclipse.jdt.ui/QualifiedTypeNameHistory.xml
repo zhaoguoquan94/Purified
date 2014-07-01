@@ -41,7 +41,6 @@
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="android.view.MenuItem"/>
 <fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="com.dagger_studio.purified.MainActivity"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="com.dagger_studio.purified.R.id"/>
 <fullyQualifiedTypeName name="android.R.id"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="com.dagger_studio.purified.MainActivity"/>
 </qualifiedTypeNameHistroy>

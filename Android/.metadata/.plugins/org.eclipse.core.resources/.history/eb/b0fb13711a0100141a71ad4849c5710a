@@ -1,0 +1,119 @@
+package com.dagger_studio.purified;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import
+
+public class Main_Tab1_Fragment extends Fragment{
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
+	{
+		activity = this.getActivity();
+		view = inflater.inflate(R.layout.activity_main_tab1, container, false);
+		listView = (ListView)view.findViewById(R.id.listView_mine);
+		if (idOfCard_list==null)
+		{
+			 idOfCard_list = new ArrayList<String>();
+			 for (int i=0;i<4;i++)
+				{
+					idOfCard_list.add(urls[i]);
+				}
+		}
+		
+		listView.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+			/**
+			 * 
+			 * 监测手指的按压动作，通过记录手指的移动方向及距离判定相应切换菜单等动作
+			 * 
+			 */
+				MainActivity.createVelocityTracker(event);
+		        switch (event.getAction()) {
+		        case MotionEvent.ACTION_DOWN:  
+		            // 手指按下时，记录按下时的横坐标  
+		            xDown = event.getRawX();
+		            System.out.println("push!");
+		            break;  
+		        case MotionEvent.ACTION_MOVE:  
+		            // 手指移动时，对比按下时的横坐标，计算出移动的距离，来调整menu的leftMargin值，从而显示和隐藏menu  
+		            xMove = event.getRawX();  
+		            int distanceX = (int) (xMove - xDown);
+		            if (isMenuVisible) {//抽屉菜单已弹出
+		                menuParams.leftMargin = distanceX;//将抽屉菜单向左移动
+		            } else {  //抽屉菜单并未弹出
+		                menuParams.leftMargin = leftEdge + distanceX;//移动菜单，由于当前菜单左侧隐藏在外边，所以需要减去width，leftEdg=-width
+		            } 
+		            if (menuParams.leftMargin < leftEdge) {  
+		                menuParams.leftMargin = leftEdge;	//防止view移动到屏幕外侧，强制将view移动回来
+		            } else if (menuParams.leftMargin > rightEdge) {  
+		                menuParams.leftMargin = rightEdge;  
+		            }  
+		            menu.setLayoutParams(menuParams);  
+		            break;  
+		        case MotionEvent.ACTION_UP:  
+		            // 手指抬起时，进行判断当前手势的意图，从而决定是滚动到menu界面，还是滚动到content界面  
+		            xUp = event.getRawX();  
+		            if (wantToShowMenu()) {  
+		                if (shouldScrollToMenu()) {  
+		                    scrollToMenu();  
+		                } else {  
+		                    scrollToContent();  
+		                }  
+		            } else if (wantToShowContent()) {  
+		                if (shouldScrollToContent()) {  
+		                    scrollToContent();  
+		                } else {  
+		                    scrollToMenu();  
+		                }  
+		            }  
+		            recycleVelocityTracker();  
+		            break;  
+		        }  
+		        return true;  
+			}
+		});
+		
+		
+		adapter = new Card_wide_Adapter(getActivity().getApplicationContext(), idOfCard_list);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent i = new Intent(activity, Web_Activity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("url", urls[arg2]);
+				i.putExtras(bundle);
+				startActivity(i);
+			}
+			});
+		return view;
+	}
+
+	private void makeShortToast(String str)
+	{
+		Toast.makeText(activity, str, Toast.LENGTH_SHORT).show();
+	}
+	private View view;
+	private Activity activity;
+	private ListView listView = null;
+	private Card_wide_Adapter adapter;
+	private List<String> idOfCard_list=null;
+	private String[] urls={"http://www.news.163.com","http://zhihu.com","http://today.hit.edu.cn","http://news.163.com/14/0522/13/9SRPNPSG0001124J.html","http://news.163.com/14/0522/18/9SSBI50R00014JB6.html"};//TODO
+	
+}
