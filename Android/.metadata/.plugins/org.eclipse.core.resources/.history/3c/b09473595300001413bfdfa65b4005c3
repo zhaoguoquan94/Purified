@@ -1,0 +1,7 @@
+package com.dagger_studio.purified;
+
+import android.support.v4.app.Fragment;
+
+public class MainDrawerFragment extends Fragment{
+	
+}

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.dagger_studio.purified.Activity2"/>
-<fullyQualifiedTypeName name="android.app.ActionBar"/>
 <fullyQualifiedTypeName name="android.app.ActionBar.Tab"/>
-<fullyQualifiedTypeName name="android.widget.FrameLayout"/>
 <fullyQualifiedTypeName name="android.support.v4.app.FragmentActivity"/>
 <fullyQualifiedTypeName name="android.view.ViewGroup"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.Main_Tab2_Fragment"/>
@@ -18,8 +15,6 @@
 <fullyQualifiedTypeName name="android.widget.BaseAdapter"/>
 <fullyQualifiedTypeName name="android.view.TextureView"/>
 <fullyQualifiedTypeName name="android.view.LayoutInflater"/>
-<fullyQualifiedTypeName name="com.dagger_studio.purified.R.layout"/>
-<fullyQualifiedTypeName name="android.widget.ImageView"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.MyAdapter.ViewHolder"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.BitmapDrawable"/>
 <fullyQualifiedTypeName name="java.net.ContentHandler"/>
@@ -29,14 +24,11 @@
 <fullyQualifiedTypeName name="com.dagger_studio.purified.R.drawable"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.MyAdapter"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.Card_wide_Adapter"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.widget.AdapterView.OnItemClickListener"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.Main_Tab3_Fragment"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.Main_Tab1_Fragment"/>
-<fullyQualifiedTypeName name="android.app.Activity"/>
 <fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Text"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
@@ -49,13 +41,23 @@
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="android.view.MenuItem"/>
 <fullyQualifiedTypeName name="android.R"/>
-<fullyQualifiedTypeName name="android.R.id"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.MainActivity"/>
 <fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout.LayoutParams"/>
 <fullyQualifiedTypeName name="android.view.VelocityTracker"/>
+<fullyQualifiedTypeName name="android.widget.ImageView"/>
+<fullyQualifiedTypeName name="com.dagger_studio.purified.MainDrawerFragment"/>
+<fullyQualifiedTypeName name="android.widget.FrameLayout"/>
+<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
+<fullyQualifiedTypeName name="com.dagger_studio.purified.R.layout"/>
+<fullyQualifiedTypeName name="android.app.Activity"/>
+<fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="android.view.View.OnTouchListener"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.app.ActionBar"/>
 <fullyQualifiedTypeName name="com.dagger_studio.purified.R.id"/>
+<fullyQualifiedTypeName name="android.R.id"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

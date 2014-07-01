@@ -52,12 +52,12 @@ public class Card_wide_Adapter extends BaseAdapter {
 		case 0:
 			viewHolder.backImageView.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.netease));
 			viewHolder.logoImageView.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.logo3));
-			viewHolder.text.setText("�ҹ�ע�����׿ͻ��ˣ��Ƽ���~");
+			viewHolder.text.setText("我精选的咱们学业领域的新闻\n专门的设计者趣味新闻，希望喜欢~");
 			break;
 		case 1:
 			viewHolder.backImageView.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.zhihu));
 			viewHolder.logoImageView.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.logo2));
-			viewHolder.text.setText("����ѡ��һЩ֧����ѡ������ԭ����ư��");
+			viewHolder.text.setText("你知道知乎有那么多逗比回答吗？\n我找了很久，精选了一些（持续更新）");
 			break;
 		case 2:
 			viewHolder.backImageView.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.firstback));

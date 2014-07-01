@@ -3,6 +3,8 @@ package com.dagger_studio.purified;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.ListView;
 public class Main_Tab2_Fragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
 	{
+		activity = this.getActivity();
 		view = inflater.inflate(R.layout.activity_main_tab2, container, false);
 		listView = (ListView)view.findViewById(R.id.listView_friend);
 		if (idOfCard_list==null)
@@ -32,14 +35,20 @@ public class Main_Tab2_Fragment extends Fragment{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
+				Intent i = new Intent(activity, Web_Activity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("url", urls[arg2]);
+				i.putExtras(bundle);
+				startActivity(i);
 			}
 			});
 		return view;
 	}
 
 	private View view;
+	private Activity activity;
 	private ListView listView = null;
 	private Card_wide_Adapter adapter;
 	private List<String> idOfCard_list = null;
+	private String[] urls={"http://www.news.163.com","http://zhihu.com","http://today.hit.edu.cn","http://news.163.com/14/0522/13/9SRPNPSG0001124J.html","http://news.163.com/14/0522/18/9SSBI50R00014JB6.html"};//TODO
 }
