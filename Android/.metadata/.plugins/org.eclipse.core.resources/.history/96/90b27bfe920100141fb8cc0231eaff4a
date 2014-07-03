@@ -1,0 +1,57 @@
+package com.dagger_studio.purified;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import android.app.Activity;
+import android.media.MediaMuxer.OutputFormat;
+
+public class DAO extends Activity{
+	private DAO(){
+		
+	}
+	
+	
+
+	public static DAO getInstance(){
+		return dao;
+	}
+	
+	public void initValues(){
+		File file = new File(appPath+"images/");
+		if (!file.exists()){
+			file.mkdirs();
+		}
+		file = new File(appPath+"images/avatar.jpg");
+		if (!file.exists()){
+			try {
+				InputStream is = this.getResources().openRawResource(R.drawable.logo1);
+				FileOutputStream fos = new FileOutputStream(file);
+				byte[] buffer = new byte[8192];
+				while(is.read(buffer) > 0){
+					
+				
+			} catch (FileNotFoundException)
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+	private static DAO dao = new DAO();
+	private String appPath = "";
+	public String getAppPath() {
+		return appPath;
+	}
+
+
+
+	public void setAppPath(String appPath) {
+		this.appPath = appPath;
+	}
+	
+}

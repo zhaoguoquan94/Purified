@@ -13,6 +13,15 @@ import android.widget.TextView;
 
 public class Card_wide_Adapter extends BaseAdapter {
 
+	/**
+	 * 
+	 * @param context
+	 * @param array 用户ID的列，来提取对应卡片
+	 * 
+	 * @return 根据传入的参数array，提取array里面的userid，构造Adapter并返回
+	 * 
+	 * @author alex
+	 */
 	public Card_wide_Adapter(Context context, List<String> array)
 	{
 		super();

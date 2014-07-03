@@ -5,10 +5,13 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -17,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -32,6 +36,9 @@ public class MainActivity extends FragmentActivity {
         
         actionBar.setHomeButtonEnabled(true);
         
+        
+        
+//        ==========================  开始设置侧滑drawer滑动功能  =====================================
         layout.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
@@ -86,13 +93,14 @@ public class MainActivity extends FragmentActivity {
 		        return true;  
 			}
 		});
-        //===================  侧滑菜单部分结束================================================
+        //===================  侧滑菜单滑动功能部分结束================================================
+        
+//        ===================  开始配置侧滑drawer的内容  ====================================
         
         fragmentManager = this.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_menu, drawerFragment).commit();
         
-        
-        //=================================== 结束设置侧面menu =================
+        //=================================== 结束配置侧滑drawer的内容  ===============
         
         fragmentManager.beginTransaction().replace(R.id.main_content, tab1_Fragment).commit();
         
@@ -194,7 +202,7 @@ public class MainActivity extends FragmentActivity {
     private int screenWidth;
     private int leftEdge;
     private int rightEdge=0;
-    private int menuPadding=0;//全部划出时，content露出来的部分
+    private int menuPadding=80;//全部划出时，content露出来的部分
     private LinearLayout.LayoutParams menuParams;
     private float xDown, xMove,xUp;
     private boolean isMenuVisible;
@@ -202,6 +210,7 @@ public class MainActivity extends FragmentActivity {
     private View content, menu, layout;
     private ActionBar actionBar;
     private boolean isContentShow = true;
+    private DAO dao = DAO.getInstance();
     
 //    ------------------------------   methods  ------------------------
     private void makeShortToast(String str)
@@ -209,7 +218,11 @@ public class MainActivity extends FragmentActivity {
 		Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
 	}
     
-    @SuppressLint("NewApi")
+    
+    
+    @SuppressWarnings("static-access")
+	@SuppressLint("NewApi")
+    
     public void initValues() {  
         WindowManager window = (WindowManager) getSystemService(Context.WINDOW_SERVICE);  
         screenWidth = window.getDefaultDisplay().getWidth(); 
@@ -227,24 +240,35 @@ public class MainActivity extends FragmentActivity {
         content.getLayoutParams().width = screenWidth;
         
         actionBar = getActionBar();
-        
+        dao.setAppPath(getApplicationContext().getFilesDir().getAbsolutePath());
+        dao.setActivity(this);
+        System.out.println(dao.getAppPath());        
+        dao.initValues();
+        //TODO 在这里添加了一些默认的数据，仅作为调试时使用
     }
+    
+    
+    
     public boolean wantToShowContent(){
     	/**
     	 * 判定是否是想要向主页面滚动，当向左滑（xUp<xDown)且当前是显示drawer的时候
     	 */
 		return xUp - xDown<0 && isMenuVisible;
 	}
+    
+    
     public boolean wantToShowMenu(){
 		/**
     	 * 判定是否是想要向drawer滚动，当向左滑（xUp<xDown)且当前是显示主界面的时候
     	 */
 		return xUp-xDown>0&&!isMenuVisible;
 	}
+    
 	
 	public boolean shouldScrollToMenu() {
 		return xUp - xDown > screenWidth / 2 || getScrollVelocity() > SNAP_VELOCITY;
 	}
+	
 	
 	public boolean shouldScrollToContent() {  
         return (xDown - xUp + menuPadding) > screenWidth / 2 || getScrollVelocity() > SNAP_VELOCITY;  
@@ -264,13 +288,18 @@ public class MainActivity extends FragmentActivity {
         return Math.abs(velocity);  
     }
 	
+	
 	public void recycleVelocityTracker() {  
         mVelocityTracker.recycle();  
         mVelocityTracker = null;  
     }
+	
+	
 	public void scrollToMenu() {  
         new ScrollTask().execute(30);  
     }
+	
+	
 	public void scrollToContent() {  
         new ScrollTask().execute(-30);  
     } 

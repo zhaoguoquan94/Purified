@@ -28,6 +28,7 @@ public class Main_Tab2_Fragment extends Fragment{
 					idOfCard_list.add("user"+i);
 				}
 		}
+		//TODO 这里的idOfCard是需要进一步修改的
 		
 		adapter = new Card_wide_Adapter(getActivity().getApplicationContext(), idOfCard_list);
 		listView.setAdapter(adapter);
