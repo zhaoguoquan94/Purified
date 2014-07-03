@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="mContext" key="selection"/>
+		<item value="setting" key="selection"/>
 		<list key="findhistory">
-			<item value="mContext"/>
-			<item value="0"/>
-			<item value="image"/>
-			<item value="view"/>
-			<item value="findViewById"/>
-			<item value="DAO"/>
-			<item value="dao"/>
-			<item value="context"/>
+			<item value="setting"/>
+			<item value="activity"/>
+			<item value="sync"/>
+			<item value="fragmentManager.beginTransaction().replace("/>
+			<item value="rightEdge"/>
+			<item value="righteadge"/>
+			<item value="rightedge"/>
+			<item value="30"/>
 		</list>
 		<list key="replacehistory">
 			<item value="50dp"/>

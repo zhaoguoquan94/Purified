@@ -13,15 +13,18 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainDrawerFragment extends Fragment{
 	@Override
@@ -111,12 +114,54 @@ public class MainDrawerFragment extends Fragment{
 							
 //			==============    为listView添加监听 结束
         	
-        	
+//        	=============  为 Button 添加监听 开始 ==============
+			
+			
+			Button settingButton = (Button)view.findViewById(R.id.settingButton_drawer);
+			settingButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					makeShortToast("Setting");
+				}
+			});
+			
+			Button refreshTipButton = (Button)view.findViewById(R.id.refreshButton_drawer);
+			refreshTipButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					makeShortToast("Refresh!");
+				}
+			});
+			
+			Button searchButton = (Button)view.findViewById(R.id.searchButton_drawer);
+			searchButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					makeShortToast("Search!");
+				}
+			});
+			
+//			===========================   设置按钮结束    ================
+			
+			
+			
+//        	=============  为 Button 添加监听 结束 ==============
+			
 //        	============ END OF TODO EREA  =============
         }
         
         
         return view;
+	}
+	
+	
+//	=======================   methods    ================================
+	
+	public void makeShortToast(String str){
+		Toast.makeText(this.activity, str, Toast.LENGTH_SHORT).show();
 	}
 	
 	private Activity activity;

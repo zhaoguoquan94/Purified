@@ -49,27 +49,29 @@
 
         <Button
             android:id="@+id/settingButton_drawer"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="left"
-            android:background="#FF0000" />
+            android:background="@drawable/ic_action_settings" 
+            />
 
         <Button
             android:id="@+id/refreshButton_drawer"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
 			android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/searchButton_drawer"
             android:layout_marginRight="10dp"
-            android:background="#0000FF" />
+            android:background="@drawable/ic_action_refresh" />
 
         <Button
             android:id="@+id/searchButton_drawer"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
 			android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="#00FF00" />
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_action_search" />
 
     </RelativeLayout>
     <!-- 底部控制元件横栏 -->
