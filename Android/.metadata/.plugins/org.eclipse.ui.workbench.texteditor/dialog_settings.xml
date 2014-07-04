@@ -13,18 +13,19 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="setting" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
+			<item value="title_activity_main"/>
+			<item value="setApp"/>
+			<item value="dao"/>
+			<item value="isContentShow"/>
+			<item value="onOp"/>
+			<item value="collectionList"/>
+			<item value="mDrawerLayout"/>
 			<item value="setting"/>
-			<item value="activity"/>
-			<item value="sync"/>
-			<item value="fragmentManager.beginTransaction().replace("/>
-			<item value="rightEdge"/>
-			<item value="righteadge"/>
-			<item value="rightedge"/>
-			<item value="30"/>
 		</list>
 		<list key="replacehistory">
+			<item value="list"/>
 			<item value="50dp"/>
 			<item value="main_content"/>
 		</list>

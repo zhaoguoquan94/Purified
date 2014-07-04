@@ -14,18 +14,22 @@ import android.media.MediaMuxer.OutputFormat;
 
 public class DAO{
 	private DAO(){
-		
 	}
-
+	
+	/**
+	 * 
+	 * @return 返回Dao的单例，使用时须调用setActivity和setAppPath方法
+	 */
 	public static DAO getInstance(){
 		return dao;
 	}
 	
+	/**
+	 * 初始化了drawer的头像文件，并写入目录文件
+	 */
+
 	public void initValues(){
-		/**
-		 * 初始化了drawer的头像文件，并写入目录文件
-		 */
-		File file = new File(appPath+"/images");
+				File file = new File(appPath+"/images");
 		int count;
 		if (!file.exists()){
 			System.out.println("创建路径:"+appPath+"/images");
@@ -56,6 +60,21 @@ public class DAO{
 		}
 	}
 	
+	/**
+	 * 
+	 * @return 返回列表中对应的url，传递给WebActivity
+	 * 
+	 * @author alex
+	 */
+	public String[] getUrls(){
+		String[] strs = {"", "http://today.hit.edu.cn", "http://today.hit.edu.cn/depart/26.htm", "http://www.international.hit.edu.cn/"};
+		return strs;
+	}
+	
+	/**
+	 * 
+	 * @return 返回侧滑边栏的目录内容
+	 */
 	public List<String> getCollectionList(){
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("我的收藏");
@@ -71,6 +90,15 @@ public class DAO{
 		
 	}
 	
+	public String getAvatarImagePath(Activity activity){
+		return activity.getApplicationContext().getFilesDir().getAbsolutePath()+"/images/avatar.jpg";
+	}
+	
+	
+	public String getAppPath() {
+		return appPath;
+	}
+	
 	public void setActivity(Activity activity){
 		this.activity = activity;
 	}
@@ -79,12 +107,10 @@ public class DAO{
 		this.appPath = appPath;
 	}
 	
-	public String getAppPath() {
-		return appPath;
-	}
-	
 	private static DAO dao = new DAO();
 	private String appPath = "";
+	
+	
 	
 	private Activity activity;
 
