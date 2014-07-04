@@ -1,0 +1,8 @@
+/libs
+/.classpath
+/.project
+/.settings
+/AndroidManifest.xml
+/assets
+/gen
+/ic_launcher-web.png

@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.media.MediaMuxer.OutputFormat;
@@ -54,21 +56,41 @@ public class DAO{
 		}
 	}
 	
+	public List<String> getCollectionList(){
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("我的收藏");
+    	list.add(h1+"哈工大新闻");
+    	list.add(h2+"本科生院新闻模块");
+    	list.add(h2+"国际合作处信息板");
+    	list.add(h1+"IT相关");
+    	list.add(h2+"Google I/O大会");
+    	list.add(h2+"云计算");
+    	list.add(h1+"网易新闻");
+    	list.add(h2+"世界杯赛程板块");
+    	return list;
+		
+	}
+	
 	public void setActivity(Activity activity){
 		this.activity = activity;
 	}
 	
-	private static DAO dao = new DAO();
-	private String appPath = "";
-	public String getAppPath() {
-		return appPath;
-	}
-	private Activity activity;
-
-
-
 	public void setAppPath(String appPath) {
 		this.appPath = appPath;
 	}
+	
+	public String getAppPath() {
+		return appPath;
+	}
+	
+	private static DAO dao = new DAO();
+	private String appPath = "";
+	
+	private Activity activity;
+
+	
+	
+	private String h1="  ·";
+	private String h2= "    ·";
 	
 }

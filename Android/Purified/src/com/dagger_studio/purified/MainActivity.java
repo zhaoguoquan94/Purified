@@ -1,27 +1,37 @@
 package com.dagger_studio.purified;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.view.WindowManager;
+import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -38,71 +48,125 @@ public class MainActivity extends FragmentActivity {
         
         
         
-//        ==========================  开始设置侧滑drawer滑动功能  =====================================
-        layout.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-			/**
-			 * 
-			 * 监测手指的按压动作，通过记录手指的移动方向及距离判定相应切换菜单等动作
-			 * 
-			 */
-				createVelocityTracker(event);
-		        switch (event.getAction()) {
-		        case MotionEvent.ACTION_DOWN:  
-		            // 手指按下时，记录按下时的横坐标  
-		            xDown = event.getRawX();
-		            System.out.println("push!");
-		            break;
-		        case MotionEvent.ACTION_MOVE:  
-		            // 手指移动时，对比按下时的横坐标，计算出移动的距离，来调整menu的leftMargin值，从而显示和隐藏menu  
-		            xMove = event.getRawX();  
-		            int distanceX = (int) (xMove - xDown);
-		            if (isMenuVisible) {//抽屉菜单已弹出
-		                menuParams.leftMargin = distanceX;//将抽屉菜单向左移动
-		            } else {  //抽屉菜单并未弹出
-		                menuParams.leftMargin = leftEdge + distanceX;//移动菜单，由于当前菜单左侧隐藏在外边，所以需要减去width，leftEdg=-width
-		            } 
-		            if (menuParams.leftMargin < leftEdge) {  
-		                menuParams.leftMargin = leftEdge;	//防止view移动到屏幕外侧，强制将view移动回来
-		            } else if (menuParams.leftMargin > rightEdge) {  
-		                menuParams.leftMargin = rightEdge;  
-		            }  
-		            menu.setLayoutParams(menuParams);  
-		            break;  
-		        case MotionEvent.ACTION_UP:  
-		            // 手指抬起时，进行判断当前手势的意图，从而决定是滚动到menu界面，还是滚动到content界面  
-		            xUp = event.getRawX();  
-		            if (wantToShowMenu()) {  
-		                if (shouldScrollToMenu()) {  
-		                    scrollToMenu();  
-		                } else {  
-		                    scrollToContent();  
-		                }  
-		            } else if (wantToShowContent()) {  
-		                if (shouldScrollToContent()) {  
-		                    scrollToContent();  
-		                } else {  
-		                    scrollToMenu();  
-		                }  
-		            }  
-		            recycleVelocityTracker();  
-		            break;  
-		        }  
-		        return true;  
-			}
-		});
-        //===================  侧滑菜单滑动功能部分结束================================================
         
 //        ===================  开始配置侧滑drawer的内容  ====================================
         
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.main_layout);
+        ImageView avatarImageView = (ImageView)findViewById(R.id.avatar_drawer);
+        File file = new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/images/avatar.jpg");
+        Bitmap bm = BitmapFactory.decodeFile(file.getPath(),null);
+        
+        avatarImageView.setImageBitmap(bm);
+        
+        ListView lv = (ListView)findViewById(R.id.listview_drawer);
+		
+        
+        
+        if (collectionList == null){
+        	collectionList = new ArrayList<String>();
+        	
+//        	===========  TODO EREA  =============
+        	collectionList = dao.getCollectionList();
+        	Adapter adapter = new BaseAdapter() {
+				
+				@Override
+				/**
+				 * @author alex
+				 * 返回每一个view来适配listView
+				 */
+				public View getView(int arg0, View arg1, ViewGroup arg2) {
+					TextView textView = new TextView(getApplicationContext());
+					textView.setText(collectionList.get(arg0));
+					textView.setTextColor(Color.WHITE);
+					textView.setHeight(90);
+					textView.setTextSize(20F);
+					return textView;
+				}
+				
+				@Override
+				public long getItemId(int arg0) {
+					return arg0;
+				}
+				
+				@Override
+				public Object getItem(int arg0) {
+					return collectionList.get(arg0);
+				}
+				
+				@Override
+				public int getCount() {
+					return collectionList.size();
+				}
+			};
+			
+			lv.setAdapter((ListAdapter)adapter);
+			
+//			==============    为listView添加内容结束
+			
+//			==============    为listView添加监听 开始
+			lv.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1,
+						int arg2, long arg3) {
+					if (arg2>0 && arg2<4){
+						Intent i = new Intent(MainActivity.this, Web_Activity.class);
+						Bundle bundle = new Bundle();
+						bundle.putString("url", urls[arg2]);
+						i.putExtras(bundle);
+						startActivity(i);
+					}
+				}
+			});
+
+							
+//			==============    为listView添加监听 结束
+        	
+//        	=============  为 Button 添加监听 开始 ==============
+			
+			
+			Button settingButton = (Button)findViewById(R.id.settingButton_drawer);
+			settingButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					makeShortToast("Setting");
+				}
+			});
+			
+			Button refreshTipButton = (Button)findViewById(R.id.refreshButton_drawer);
+			refreshTipButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					makeShortToast("Refresh!");
+				}
+			});
+			
+			Button searchButton = (Button)findViewById(R.id.searchButton_drawer);
+			searchButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					makeShortToast("Search!");
+				}
+			});
+			
+//			===========================   设置按钮结束    ================
+			
+			
+			
+//        	=============  为 Button 添加监听 结束 ==============
+			
+//        	============ END OF TODO EREA  =============
+        } 
+        
+        
+        //=================================== 配置中部主题内容部分 content  ===============
+        
         fragmentManager = this.getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.main_menu, drawerFragment).commit();
-        
-        //=================================== 结束配置侧滑drawer的内容  ===============
-        
         fragmentManager.beginTransaction().replace(R.id.main_content, tab1_Fragment).commit();
+        
+        
         
         
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -174,10 +238,12 @@ public class MainActivity extends FragmentActivity {
     	switch (item.getItemId()) {
     	case android.R.id.home:{
     		if (isContentShow){
-    			scrollToMenu();
+    			Log.d("Gravity_Left", Gravity.LEFT+"");
+    			mDrawerLayout.openDrawer(Gravity.LEFT);
     			isContentShow = false;
     		}else{
-    			scrollToContent();
+    			Log.d("Gravity_Left", Gravity.LEFT+"");
+    			mDrawerLayout.closeDrawer(Gravity.LEFT);
     			isContentShow = true;
     		}
     		break;
@@ -192,25 +258,17 @@ public class MainActivity extends FragmentActivity {
     	return super.onOptionsItemSelected(item);
     }
     
-    public static final int SNAP_VELOCITY = 200;
     
     private Main_Tab1_Fragment tab1_Fragment = new Main_Tab1_Fragment();
-    private MainDrawerFragment drawerFragment = new MainDrawerFragment();
     private Main_Tab2_Fragment tab2_Fragment = new Main_Tab2_Fragment();
     private Main_Tab3_Fragment tab3_Fragment = new Main_Tab3_Fragment();
     private FragmentManager fragmentManager = null;
-    private int screenWidth;
-    private int leftEdge;
-    private int rightEdge=0;
-    private int menuPadding=80;//全部划出时，content露出来的部分
-    private LinearLayout.LayoutParams menuParams;
-    private float xDown, xMove,xUp;
-    private boolean isMenuVisible;
-    private VelocityTracker mVelocityTracker;
-    private View content, menu, layout;
     private ActionBar actionBar;
     private boolean isContentShow = true;
     private DAO dao = DAO.getInstance();
+    private DrawerLayout mDrawerLayout;
+    private List<String> collectionList = null;
+	String[] urls = {"", "http://today.hit.edu.cn", "http://today.hit.edu.cn/depart/26.htm", "http://www.international.hit.edu.cn/"};
     
 //    ------------------------------   methods  ------------------------
     private void makeShortToast(String str)
@@ -220,162 +278,19 @@ public class MainActivity extends FragmentActivity {
     
     
     
-    @SuppressWarnings("static-access")
-	@SuppressLint("NewApi")
+    @SuppressLint("NewApi")
     
     public void initValues() {  
-        WindowManager window = (WindowManager) getSystemService(Context.WINDOW_SERVICE);  
-        screenWidth = window.getDefaultDisplay().getWidth(); 
-        layout = findViewById(R.id.main_layout);
-        content = findViewById(R.id.main_content);
-        menu = findViewById(R.id.main_menu);
-        menuParams = (LinearLayout.LayoutParams) menu.getLayoutParams();  
-        // 将menu的宽度设置为屏幕宽度减去menuPadding
-        menuParams.width = screenWidth - menuPadding;
-        // 左边缘的值赋值为menu宽度的负数  
-        leftEdge = -menuParams.width;  
-        // menu的leftMargin设置为左边缘的值，这样初始化时menu就变为不可见  
-        menuParams.leftMargin = leftEdge;  
-        // 将content的宽度设置为屏幕宽度  
-        content.getLayoutParams().width = screenWidth;
-        
         actionBar = getActionBar();
         dao.setAppPath(getApplicationContext().getFilesDir().getAbsolutePath());
         dao.setActivity(this);
-        System.out.println(dao.getAppPath());        
         dao.initValues();
         //TODO 在这里添加了一些默认的数据，仅作为调试时使用
     }
     
     
     
-    public boolean wantToShowContent(){
-    	/**
-    	 * 判定是否是想要向主页面滚动，当向左滑（xUp<xDown)且当前是显示drawer的时候
-    	 */
-		return xUp - xDown<0 && isMenuVisible;
-	}
-    
-    
-    public boolean wantToShowMenu(){
-		/**
-    	 * 判定是否是想要向drawer滚动，当向左滑（xUp<xDown)且当前是显示主界面的时候
-    	 */
-		return xUp-xDown>0&&!isMenuVisible;
-	}
-    
-	
-	public boolean shouldScrollToMenu() {
-		return xUp - xDown > screenWidth / 2 || getScrollVelocity() > SNAP_VELOCITY;
-	}
-	
-	
-	public boolean shouldScrollToContent() {  
-        return (xDown - xUp + menuPadding) > screenWidth / 2 || getScrollVelocity() > SNAP_VELOCITY;  
-    }
-	
-	
-	public void createVelocityTracker(MotionEvent event) {  
-        if (mVelocityTracker == null) {  
-            mVelocityTracker = VelocityTracker.obtain();  
-        }  
-        mVelocityTracker.addMovement(event);  
-    }
-	
-	public int getScrollVelocity() {  
-        mVelocityTracker.computeCurrentVelocity(1000);  
-        int velocity = (int) mVelocityTracker.getXVelocity();  
-        return Math.abs(velocity);  
-    }
-	
-	
-	public void recycleVelocityTracker() {  
-        mVelocityTracker.recycle();  
-        mVelocityTracker = null;  
-    }
-	
-	
-	public void scrollToMenu() {  
-        new ScrollTask().execute(15);  
-    }
-	
-	
-	public void scrollToContent() {  
-        new ScrollTask().execute(-15);  
-    } 
-
-
 //    ------------------------ class------------------------------------
-    class ScrollTask extends AsyncTask<Integer, Integer, Integer> {  
-  	  
-        @Override  
-        protected Integer doInBackground(Integer... speed) {  
-            int leftMargin = menuParams.leftMargin;
-            int currentSpeed = speed[0];
-            // 根据传入的速度来滚动界面，当滚动到达左边界或右边界时，跳出循环。  
-            while (true) {
-                leftMargin = leftMargin + currentSpeed;  
-                if (leftMargin > rightEdge) {  
-                    leftMargin = rightEdge;//防止向右超出视野，终止向右的滚动
-                    break;  
-                }  
-                if (leftMargin < leftEdge) {  
-                    leftMargin = leftEdge;  //终止向左的滚动
-                    break;  
-                }
-                
-                if (speed[0]<0){
-                	//向左滑
-                	currentSpeed = (leftEdge-leftMargin)/10-2;
-                }
-                if(speed[0]>0){
-                	//向右滑
-                	currentSpeed = (rightEdge - leftMargin)/10+2;
-                }
-
-                publishProgress(leftMargin);  
-                // 为了要有滚动效果产生，每次循环使线程睡眠若干毫秒，这样肉眼才能够看到滚动动画。  
-                sleep(20);  
-            }  
-            if (speed[0] > 0) {  
-                isMenuVisible = true;  
-            } else {  
-                isMenuVisible = false;  
-            }  
-            return leftMargin;  
-        }  
-
-        @Override  
-        protected void onProgressUpdate(Integer... leftMargin) {  
-            menuParams.leftMargin = leftMargin[0];  
-            menu.setLayoutParams(menuParams);  
-        }  
-
-        @Override  
-        protected void onPostExecute(Integer leftMargin) {  
-            menuParams.leftMargin = leftMargin;  
-            menu.setLayoutParams(menuParams);  
-        }  
-    }  
-
-    /** 
-     * 使当前线程睡眠指定的毫秒数。 
-     *  
-     * @param millis 
-     *            指定当前线程睡眠多久，以毫秒为单位 
-     */  
-    private void sleep(long millis) {  
-        try {  
-            Thread.sleep(millis);  
-        } catch (InterruptedException e) {  
-            e.printStackTrace();  
-        }  
-    }
-    
-    
-    public  void hname() {
-		
-	}
 }
 
 
