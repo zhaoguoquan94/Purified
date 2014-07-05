@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -43,6 +44,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initValues();
+        urls = dao.getUrls();
         
         actionBar.setHomeButtonEnabled(true);
         
@@ -52,8 +54,10 @@ public class MainActivity extends FragmentActivity {
 //        ===================  开始配置侧滑drawer的内容  ====================================
         
         mDrawerLayout = (DrawerLayout)findViewById(R.id.main_layout);
+        
+        
         ImageView avatarImageView = (ImageView)findViewById(R.id.avatar_drawer);
-        File file = new File(getApplicationContext().getFilesDir().getAbsolutePath()+"/images/avatar.jpg");
+        File file = new File(dao.getAvatarImagePath(this));
         Bitmap bm = BitmapFactory.decodeFile(file.getPath(),null);
         
         avatarImageView.setImageBitmap(bm);
@@ -67,6 +71,8 @@ public class MainActivity extends FragmentActivity {
         	
 //        	===========  TODO EREA  =============
         	collectionList = dao.getCollectionList();
+        	
+        	//==========      为drawer的listView适配一个adapter
         	Adapter adapter = new BaseAdapter() {
 				
 				@Override
@@ -103,7 +109,7 @@ public class MainActivity extends FragmentActivity {
 			
 //			==============    为listView添加内容结束
 			
-//			==============    为listView添加监听 开始
+//			==============    为listView添加监听 开始  TODO 这里的需要更改，因为目前listView里面的只是测试用的
 			lv.setOnItemClickListener(new OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1,
@@ -119,7 +125,6 @@ public class MainActivity extends FragmentActivity {
 			});
 
 							
-//			==============    为listView添加监听 结束
         	
 //        	=============  为 Button 添加监听 开始 ==============
 			
@@ -129,7 +134,7 @@ public class MainActivity extends FragmentActivity {
 				
 				@Override
 				public void onClick(View arg0) {
-					makeShortToast("Setting");
+					makeShortToast("Setting");//TODO 为设置按钮添加真实的响应事件
 				}
 			});
 			
@@ -138,7 +143,7 @@ public class MainActivity extends FragmentActivity {
 				
 				@Override
 				public void onClick(View arg0) {
-					makeShortToast("Refresh!");
+					makeShortToast("Refresh!");//TODO 为刷新按钮添加真实的响应事件
 				}
 			});
 			
@@ -147,15 +152,13 @@ public class MainActivity extends FragmentActivity {
 				
 				@Override
 				public void onClick(View arg0) {
-					makeShortToast("Search!");
+					makeShortToast("Search!");//TODO 为搜索按钮添加真实的响应事件
 				}
 			});
 			
-//			===========================   设置按钮结束    ================
 			
 			
 			
-//        	=============  为 Button 添加监听 结束 ==============
 			
 //        	============ END OF TODO EREA  =============
         } 
@@ -268,7 +271,7 @@ public class MainActivity extends FragmentActivity {
     private DAO dao = DAO.getInstance();
     private DrawerLayout mDrawerLayout;
     private List<String> collectionList = null;
-	String[] urls = {"", "http://today.hit.edu.cn", "http://today.hit.edu.cn/depart/26.htm", "http://www.international.hit.edu.cn/"};
+	private String[] urls;
     
 //    ------------------------------   methods  ------------------------
     private void makeShortToast(String str)
@@ -285,7 +288,6 @@ public class MainActivity extends FragmentActivity {
         dao.setAppPath(getApplicationContext().getFilesDir().getAbsolutePath());
         dao.setActivity(this);
         dao.initValues();
-        //TODO 在这里添加了一些默认的数据，仅作为调试时使用
     }
     
     
