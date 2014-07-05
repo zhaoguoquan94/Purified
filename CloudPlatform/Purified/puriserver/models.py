@@ -9,7 +9,8 @@ class PURepo(models.Model):
 	content=models.TextField(max_length=1048576)
 	needPushAfterChange=models.BooleanField(default=False)
 	keyword=models.CharField(max_length=128)
-	category=models.ForeignKey("PUCategory")
+	category=models.ManyToManyField("PUCategory")
+	
 	lastUpdateDate=models.DateField.auto_now()
 	def __unicode__(self):
 		return self.user+self.url
