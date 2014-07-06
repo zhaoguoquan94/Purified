@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Purified/res/layout/activity_main_menu.xml&apos; to &apos;activity_main_drawer.xml&apos;" description="Rename resource &apos;activity_main_menu.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="res/layout/activity_main_menu.xml" name="activity_main_drawer.xml" stamp="1404132042365" updateReferences="true"/>
-</session>
