@@ -19,13 +19,13 @@
         "default_title" : "Purified",
         "default_popup" : "index.html"
     },
-    "background" : ["js/background.js"],
-    "content_scripts" : [
+    "background" : {
+        "scripts" : ["js/jquery.js","js/background.js"]
+    },
+    "content_scripts": [
         {
-            "matches" : ["*://*/*"],
-            "css" : ["css/main.css"],
-            "js" : ["js/jquery-2.1.1.min.js","js/main.js"],
-            "run_at" : "document_end"
+            "matches": ["*://*/*"],
+            "js": ["js/main.js"]
         }
     ]
 }
