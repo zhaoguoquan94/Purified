@@ -1,22 +1,53 @@
 <html>
   <head>
+    <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
     body {
-        width: 300px;
-        height: 70px;
+        width: 400px;
+        height: 100px;
     }
     </style>
   </head>
   <body>
-  <div class="container text-center">
-    <button type="button" class="btn btn-danger">服务器维护中，暂时无法连接。</button>
-    <div id="clock_div"></div>
+  <div class="container" style="margin: 10px;">
+    <div class="row" style="margin: 10px;">
+      <div class="col-xs-3">
+        <img src="images/icon48.png" class="img-rounded">
+      </div>
+      <div class="col-xs-9"><h4>Purified 卓越 高效 便捷</h4></div>
+    </div>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="username" class="col-xs-3 control-label">用户名</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" name="username" id="username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-xs-3 control-label">密码</label>
+        <div class="col-xs-9">
+          <input type="password" class="form-control" name="password" id="password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-offset-3 col-xs-9">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> 记住我
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-offset-3 col-xs-3">
+          <button type="submit" class="btn btn-default">登录</button>
+        </div>
+        <div class="col-xs-6">
+          <a href="register.html" class="btn btn-default">注册->加入我们</a>
+        </div>
+      </div>
+    </form>
   </div>
-  <script src="js/my_clock.js"></script>
   </body>
 </html>

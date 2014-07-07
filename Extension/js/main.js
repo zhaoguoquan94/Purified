@@ -1,11 +1,14 @@
-function add_to_purified(info, tab){
-    alert('"'+info.linkUrl+'"已加入Purfied!');
-}
-
-chrome.contextMenus.create({
-    "type" : "normal",
-    "title" : "加入我的Purified",
+chrome.contextMenus.update({
     "id" : "purified",
-    "contexts" : ["link"],
     "onclick" : add_to_purified
 });
+
+function add_to_purified(info, tab){
+    alert(123);
+    alert(2222222);
+    if ($) {
+        alert("yyy");
+    } else {
+        alert("nnn");
+    }
+}
