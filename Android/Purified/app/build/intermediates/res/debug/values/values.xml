@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values/color.xml -->
+    <eat-comment />
+
+    <color name="black_trans">#80000000</color>
+    <color name="black_trans_light">#30000000</color>
+    <color name="grey_back">#BDC3C7</color>
+    <color name="white">#FFFFFF</color>
+    <!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values/dimens.xml -->
+    <eat-comment />
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Purified</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="hello_world">Hello world!\nKeep Going and Stay Strong Team!\nWe have the brightest tommorow!</string>
+    <string name="title_activity_activity2">Activity2</string>
+    <string name="title_activity_main__tab3__fragment">Main_Tab3_Fragment</string>
+    <!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values/styles.xml -->
+    <eat-comment />
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+</resources>
