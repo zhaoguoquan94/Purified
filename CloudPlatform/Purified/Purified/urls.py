@@ -13,9 +13,9 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^puriserver/',include('puriserver.urls',namespace='puriserver'),name='puriserver'),
+    url(r'^puriserver/$',include('puriserver.urls',namespace='puriserver'),name='puriserver'),
     url(r'^accounts/login/$', 'puriserver.views.loginView'),
     url(r'^accounts/logout/$', 'puriserver.views.logoutView'),
-    url(r'^registration/$','puriserver.views.registrationView'),
+    # url(r'^registration/$','puriserver.views.registrationView'),
     url(r'^admin/', include(admin.site.urls)),
 )
