@@ -11,10 +11,10 @@ from puriserver.forms import *
 import datetime
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from PIL import Image
+# from PIL import Image
 import StringIO
 from django.contrib.auth.models import User 
-from django.contrib.auth.models import AnonymousUser
+# from django.contrib.auth.models import AnonymousUser
 import urllib
 # from django.core.serializers.json import DjangoJSONEncoder
 import json
