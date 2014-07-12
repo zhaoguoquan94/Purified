@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dagger_studio.purified.TestInitActivity" >
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        />
+</menu>
+<!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/menu/test_init.xml -->

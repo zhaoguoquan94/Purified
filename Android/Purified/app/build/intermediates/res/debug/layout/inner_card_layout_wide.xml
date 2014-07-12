@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:id="@+id/relativelayout_inner_card_layout"
+    android:layout_height="match_parent" >
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/newImage_inner_card"
+        android:background="@drawable/new_flag"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_grey"
+        android:layout_margin="5dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="150dp"
+            android:id="@+id/backimage_inner_card"
+            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/framelayout_inner_card"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_margin="8dp"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_alignBottom="@id/backimage_inner_card"
+                android:id="@+id/text_inner_card"
+                />
+        </FrameLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
+<!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/inner_card_layout_wide.xml -->

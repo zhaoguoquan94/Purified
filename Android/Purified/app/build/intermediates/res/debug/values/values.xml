@@ -6,7 +6,8 @@
 
     <color name="black_trans">#80000000</color>
     <color name="black_trans_light">#30000000</color>
-    <color name="grey_back">#BDC3C7</color>
+    <color name="grey_back">#F4F4F4</color>
+    <color name="light_grey">#E0E0E0</color>
     <color name="white">#FFFFFF</color>
     <!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values/dimens.xml -->
     <eat-comment />
@@ -23,6 +24,7 @@
     <string name="hello_world">Hello world!\nKeep Going and Stay Strong Team!\nWe have the brightest tommorow!</string>
     <string name="title_activity_activity2">Activity2</string>
     <string name="title_activity_main__tab3__fragment">Main_Tab3_Fragment</string>
+    <string name="title_activity_test_init">TestInitActivity</string>
     <!-- From: file:/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values/styles.xml -->
     <eat-comment />
 

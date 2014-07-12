@@ -69,8 +69,23 @@
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
-                name="default_pic"
-                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/default_pic.png"
+                name="colorback_cherry"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/colorback_cherry.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="colorback_forest"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/colorback_forest.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="colorback_grape"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/colorback_grape.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="colorback_ocean"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/colorback_ocean.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
@@ -129,6 +144,11 @@
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
+                name="icon_user_default"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/icon_user_default.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
                 name="logo1"
                 path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/logo1.jpg"
                 qualifiers="xxhdpi-v4"
@@ -151,6 +171,11 @@
             <file
                 name="netease"
                 path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/netease.png"
+                qualifiers="xxhdpi-v4"
+                type="drawable" />
+            <file
+                name="new_flag"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/new_flag.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
@@ -184,18 +209,38 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="activity_test_init"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/activity_test_init.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="activity_web"
                 path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/activity_web.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                name="card_layout_wide"
-                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/card_layout_wide.xml"
+                name="empty_tab"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/empty_tab.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="inner_card_layout_wide"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/inner_card_layout_wide.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="outer_card_layout_wide"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/layout/outer_card_layout_wide.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="main"
                 path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/menu/main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                name="test_init"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/menu/test_init.xml"
                 qualifiers=""
                 type="menu" />
             <file
@@ -210,7 +255,9 @@
                 </color>
                 <color name="black_trans_light" >#30000000
                 </color>
-                <color name="grey_back" >#BDC3C7
+                <color name="light_grey" >#E0E0E0
+                </color>
+                <color name="grey_back" >#F4F4F4
                 </color>
                 <color name="black_trans" >#80000000
                 </color>
@@ -234,9 +281,11 @@
                 </string>
                 <string name="title_activity_activity2" >Activity2
                 </string>
-                <string name="hello_world" >Hello world!\nKeep Going and Stay Strong Team!\nWe have the brightest tommorow!
+                <string name="title_activity_test_init" >TestInitActivity
                 </string>
                 <string name="drawer_open" >Open navigation drawer
+                </string>
+                <string name="hello_world" >Hello world!\nKeep Going and Stay Strong Team!\nWe have the brightest tommorow!
                 </string>
                 <string name="drawer_close" >Close navigation drawer
                 </string>
@@ -292,8 +341,14 @@
                 </style>
             </file>
             <file
-                name="icon_user_default"
-                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/icon_user_default.png"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/values-w820dp/dimens.xml"
+                qualifiers="w820dp-v13" >
+                <dimen name="activity_horizontal_margin" >64dp
+                </dimen>
+            </file>
+            <file
+                name="empty_page"
+                path="/Users/alex/Documents/workspace/Purified/Android/Purified/app/src/main/res/drawable-xxhdpi/empty_page.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
         </source>

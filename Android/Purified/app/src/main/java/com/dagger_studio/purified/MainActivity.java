@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -30,10 +32,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dagger_studio.purified.com.dagger_studio.purified.Beans.UserInfo;
-import com.dagger_studio.purified.com.dagger_studio.purified.DAO.BasementDAO;
+import com.dagger_studio.purified.Beans.UserInfo;
+import com.dagger_studio.purified.DAO.BasementDAO;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -278,7 +279,12 @@ public class MainActivity extends FragmentActivity {
     		break;
     	}
 		case R.id.action_new:{
-			makeShortToast("add!");
+			if (!sharedPreferences.getBoolean("initdataload", false)){
+
+                makeShortToast("正在初始化基本测试数据");
+            }else{
+                makeShortToast("您已经初始化基本数据");
+            }
 			break;
 		}
 		default:
@@ -299,6 +305,8 @@ public class MainActivity extends FragmentActivity {
     private List<String> collectionList = null;
 	private String[] urls;
     private ActionBarDrawerToggle mDrawerToggle;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
 //    ------------------------------   methods  ------------------------
     private void makeShortToast(String str)
@@ -311,6 +319,8 @@ public class MainActivity extends FragmentActivity {
     @SuppressLint("NewApi")
 
     public void initValues() {
+        sharedPreferences = getSharedPreferences("data_info", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         actionBar = getActionBar();
         basementDao.setActivity(this);
         basementDao.initValues();

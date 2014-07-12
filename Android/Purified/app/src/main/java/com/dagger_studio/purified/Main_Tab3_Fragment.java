@@ -16,25 +16,25 @@ import java.util.List;
 public class Main_Tab3_Fragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState)
 	{
-		view = inflater.inflate(R.layout.activity_main_tab3, container, false);
-		listView = (ListView)view.findViewById(R.id.listView_recommand);
-		if (idOfCard_list==null)
-		{
-			 idOfCard_list = new ArrayList<String>();
-			 for (int i=0;i<5;i++)
-				{
-					idOfCard_list.add("user"+i);
-				}
-		}
-		adapter = new Card_wide_Adapter(getActivity().getApplicationContext(), idOfCard_list);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-			}
-			});
+//		view = inflater.inflate(R.layout.activity_main_tab3, container, false);
+//		listView = (ListView)view.findViewById(R.id.listView_recommand);
+//		if (idOfCard_list==null)
+//		{
+//			 idOfCard_list = new ArrayList<String>();
+//			 for (int i=0;i<5;i++)
+//				{
+//					idOfCard_list.add("user"+i);
+//				}
+//		}
+//		adapter = new MyCollectionList_Card_wide_Adapter(getActivity().getApplicationContext(), idOfCard_list);
+//		listView.setAdapter(adapter);
+//		listView.setOnItemClickListener(new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+//					long arg3) {
+//				// TODO Auto-generated method stub
+//			}
+//			});
 
 		return view;
 	}
@@ -51,7 +51,7 @@ public class Main_Tab3_Fragment extends Fragment{
 
 	private View view;
 	private ListView listView = null;
-	private Card_wide_Adapter adapter;
+	private MyCollectionList_Card_wide_Adapter adapter;
 	private List<String> idOfCard_list = null;
 }
 

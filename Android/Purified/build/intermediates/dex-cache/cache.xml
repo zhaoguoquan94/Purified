@@ -8,6 +8,12 @@
         revision="20.0.0"
         sha1="5896b0a4e377ac4242eb2bc785220c1c4fc052f4"/>
     <item
+        dex="/Users/alex/Documents/workspace/Purified/Android/Purified/app/build/intermediates/pre-dexed/debug/greendao-1.3.7-0b2113ee8246fd86b06bc640e9fa05ef6e917008.jar"
+        jar="/Users/alex/Documents/workspace/Purified/Android/Purified/libs/greendao-1.3.7.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="dda08161d004c4df96938da6909f1c2b96cd33c8"/>
+    <item
         dex="/Users/alex/Documents/workspace/Purified/Android/Purified/app/build/intermediates/pre-dexed/debug/android-support-v4-433a4b0dd3c80a4706297ea4176babbc494a26a0.jar"
         jar="/Users/alex/Documents/workspace/Purified/Android/Purified/libs/android-support-v4.jar"
         jumboMode="false"
