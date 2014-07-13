@@ -1,5 +1,6 @@
+CLOSE_UNRELATED_PROJECTS=true
 PROBLEMS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
-platformState=1404308590003
+platformState=1404541270471
 quickStart=false
 tipsAndTricks=true

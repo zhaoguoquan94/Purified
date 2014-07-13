@@ -1,7 +1,0 @@
-package com.dagger_studio.purified;
-
-import android.support.v4.app.FragmentActivity;
-
-public class Main_Tab1_Fragment extends FragmentActivity{
-
-}

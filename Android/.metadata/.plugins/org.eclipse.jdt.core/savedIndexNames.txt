@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/Users/alex/Documents/workspace/Purified/Android/.metadata/.plugins/org.eclipse.jdt.core
-2313260723.index
-3640741068.index
-3383485884.index
