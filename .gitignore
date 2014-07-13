@@ -1,6 +1,7 @@
 *.pyc
-
-
+*/settings.py
+*/nohup.out
+*.class
 */target
 target
 tmp
