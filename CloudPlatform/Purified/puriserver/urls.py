@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'^repoList/$',views.repoListView),
     url(r'^categoryList/$',views.categoryListView),
     url(r'^category/$',views.categoryView),
-    
+    url(r'^logintest$',views.logintest),
 
     )
 

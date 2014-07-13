@@ -13,7 +13,7 @@ class PURepo(models.Model):
     
     lastUpdateDate=models.DateField(auto_now=True)
     def __unicode__(self):
-        return self.user+self.url
+        return str(self.user)+self.url
 
 class PUCategory(models.Model):
     name=models.CharField(max_length=128)
@@ -25,7 +25,7 @@ class PUCategory(models.Model):
     #2    public
     isPublic=models.IntegerField(default=0)
     def __unicode__(self):
-        return self.name+" 's "+self.user
+        return self.name
 
 
 
@@ -33,4 +33,4 @@ class PUUserProfile(models.Model):
     user=models.OneToOneField(User)
     age=models.IntegerField(default=18)
     gender=models.CharField(max_length=10)
-    friend=models.ManyToManyField("PUUserProfile")
+    friend=models.ManyToManyField("PUUserProfile",blank=True)

@@ -21,7 +21,13 @@ import json
 import base64
 from django.contrib.auth import logout,login
 from django.contrib.auth import authenticate
+from puriserver.forms import *
+from puriserver.models import *
 timeFormat="%Y-%m-%d %H:%M:%S"
+
+def logintest(request):
+    return HttpResponse(str(request.user))
+
 
 def loginView(request):
     print "login view called"
@@ -60,8 +66,9 @@ def repoView(request):
     #post方法用于上传repo，get方法用于得到token,sessionid
     if (request.method=="POST"):
         if (request.user.is_authenticated()):
-            form=CreateRepo(request.POST)
-            if form.is_valid:
+            form=CreateRepoForm(request.POST)
+
+            if form.is_valid():
                 cd=form.cleaned_data
                 newRepo=PURepo(
                     user=request.user,
@@ -72,22 +79,27 @@ def repoView(request):
                     keyword=cd['keyword'],
                     lastUpdateDate=datetime.datetime.now(),
                     )
+                newRepo.save()
                 categorys=cd['category'].split(",")
                 for item in categorys:
-                    newRepo.category_set.add(PUCategory.objects.get(pk=int(item)))
-
-
-                newCate.save()
+                    print item
+                    print int(item)
+                    cate=PUCategory.objects.get(pk=int(item))
+                    newRepo.category.add(cate)
+                newRepo.save()
                 return HttpResponse("success")
             else:
                 #form not valid
-                return HttpResponse("error,form not valid")
+                # return HttpResponse("error,form not valid")
+                return render_to_response("puriserver/createRepo.html",{'form':form},context_instance=RequestContext(request))
+
 
 
 
     else:
         #返回token
-        return render_to_response("puriserver/login.html",context_instance=RequestContext(request))
+        form=CreateRepoForm()
+        return render_to_response("puriserver/createRepo.html",{'form':form},context_instance=RequestContext(request))
 
 
 def repoListView(request):
@@ -127,7 +139,7 @@ def categoryView(request):
     #post方法用于上传cate，get方法用于得到token
     if (request.method=="POST"):
         if request.user.is_authenticated():
-            form=CreateCategory(request.POST)
+            form=CreateCategoryForm(request.POST)
             if form.is_valid:
                 cd=form.cleaned_data
                 newCate=PUCategory(
