@@ -5,23 +5,29 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from forum.models import Topic,Comment,ImageInTopic,StaffComment
+# from forum.models import Topic,Comment,ImageInTopic,StaffComment
 from django.utils import timezone
 from puriserver.forms import *
 import datetime
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from PIL import Image
+# from PIL import Image
 import StringIO
 from django.contrib.auth.models import User 
-from django.contrib.auth.models import AnonymousUser
+# from django.contrib.auth.models import AnonymousUser
 import urllib
 # from django.core.serializers.json import DjangoJSONEncoder
 import json
 import base64
 from django.contrib.auth import logout,login
 from django.contrib.auth import authenticate
+from puriserver.forms import *
+from puriserver.models import *
 timeFormat="%Y-%m-%d %H:%M:%S"
+
+def logintest(request):
+    return HttpResponse(str(request.user))
+
 
 def loginView(request):
     print "login view called"
@@ -37,7 +43,7 @@ def loginView(request):
             if user is not None:
                 print "user valid"
                 login(request,user)
-                return HttpResponsez("login success")
+                return HttpResponse("login success")
             else:
                 print "wrong password"
                 # print ans
@@ -57,11 +63,12 @@ def logoutView(request):
 
 
 def repoView(request):
-	#post方法用于上传repo，get方法用于得到token,sessionid
-	if (request.method=="POST"):
-        if request.user.is_authenticated():
-            form=CreateRepo(request.POST)
-            if form.is_valid:
+    #post方法用于上传repo，get方法用于得到token,sessionid
+    if (request.method=="POST"):
+        if (request.user.is_authenticated()):
+            form=CreateRepoForm(request.POST)
+
+            if form.is_valid():
                 cd=form.cleaned_data
                 newRepo=PURepo(
                     user=request.user,
@@ -72,24 +79,32 @@ def repoView(request):
                     keyword=cd['keyword'],
                     lastUpdateDate=datetime.datetime.now(),
                     )
+                newRepo.save()
                 categorys=cd['category'].split(",")
                 for item in categorys:
-                    newRepo.category_set.add(PUCategory.objects.get(pk=int(item)))
-
-
-                newCate.save()
+                    print item
+                    print int(item)
+                    cate=PUCategory.objects.get(pk=int(item))
+                    newRepo.category.add(cate)
+                newRepo.save()
                 return HttpResponse("success")
             else:
                 #form not valid
-                return HttpResponse("error,form not valid")
-	else:
-		#返回token
-        return render_to_response("puriserver/login.html",context_instance=RequestContext(request))
+                # return HttpResponse("error,form not valid")
+                return render_to_response("puriserver/createRepo.html",{'form':form},context_instance=RequestContext(request))
+
+
+
+
+    else:
+        #返回token
+        form=CreateRepoForm()
+        return render_to_response("puriserver/createRepo.html",{'form':form},context_instance=RequestContext(request))
 
 
 def repoListView(request):
-	"""用于获取url以及内容最近更改时间，客户端发现更新则下载最新内容"""
-	if request.user.is_authenticated():
+    """用于获取url以及内容最近更改时间，客户端发现更新则下载最新内容"""
+    if request.user.is_authenticated():
         #user 已经认证可以传输信息
         repoList=PURepo.objects.filter(user=request.user)
         dicList=[]
@@ -124,11 +139,11 @@ def categoryView(request):
     #post方法用于上传cate，get方法用于得到token
     if (request.method=="POST"):
         if request.user.is_authenticated():
-            form=CreateCategory(request.POST)
+            form=CreateCategoryForm(request.POST)
             if form.is_valid:
                 cd=form.cleaned_data
                 newCate=PUCategory(
-                    name=cd['name']
+                    name=cd['name'],
                     user=request.user,
                     isPublic=cd['isPublic']
 

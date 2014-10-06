@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     url(r'^puriserver/',include('puriserver.urls',namespace='puriserver'),name='puriserver'),
     url(r'^accounts/login/$', 'puriserver.views.loginView'),
     url(r'^accounts/logout/$', 'puriserver.views.logoutView'),
-    url(r'^registration/$','puriserver.views.registrationView'),
+    # url(r'^registration/$','puriserver.views.registrationView'),
     url(r'^admin/', include(admin.site.urls)),
 )
